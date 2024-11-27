@@ -76,12 +76,13 @@ const CategoryPage = () => {
   return (
     <Box
       sx={{
-        mt: "8rem",
+         mt: "5rem",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         gap: 4,
+
       }}
     >
       <Backdrop

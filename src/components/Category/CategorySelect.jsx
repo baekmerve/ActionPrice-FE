@@ -14,8 +14,9 @@ const CategorySelect = ({
   return (
     <FormControl
       sx={{
-        width: 250,
-        minWidth: 100,
+        // width: 250,
+        width: { sx:"100%", md:"80%"},
+        // minWidth: 200,
         justifyContent: "center",
         "& .MuiOutlinedInput-root": {
           "& fieldset": {
@@ -30,7 +31,7 @@ const CategorySelect = ({
     >
       <InputLabel
         style={{
-          transform: value ? "translate(0, -1.5em) scale(0.75)" : undefined,
+          transform: value ? "translate(0, -1.5em) scale(0.75)": undefined,
           color: colors.brown,
         }}
       >

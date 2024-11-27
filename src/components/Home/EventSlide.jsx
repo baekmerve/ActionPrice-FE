@@ -1,17 +1,18 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
+
 import Slider from "react-slick";
 import { Box, Typography } from "@mui/material";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { colors} from "../../assets/assest";
+import { colors, slideImageList } from "../../assets/assest";
 
-const DarkGreenPage = ({ slideImages }) => {
+const EventSlide = () => {
   const settings = {
     infinite: true,
     speed: 2000,
-    slidesToShow: 5,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -22,7 +23,7 @@ const DarkGreenPage = ({ slideImages }) => {
       {
         breakpoint: 1024, // Desktop and up
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 3,
           slidesToScroll: 3,
           infinite: true,
         },
@@ -32,14 +33,14 @@ const DarkGreenPage = ({ slideImages }) => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2,
+     
         },
       },
       {
         breakpoint: 480, // Mobile
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+     
         },
       },
     ],
@@ -48,12 +49,12 @@ const DarkGreenPage = ({ slideImages }) => {
   return (
     <Box
       sx={{
-        minHeight: "100vh", // Full height of the viewport
-        padding: 5,
-        margin: 2,
+        // minHeight: "100vh", // Full height of the viewport
+        paddingY: 5,
+        margin: 1,
         borderRadius: "25px",
         position: "relative",
-        backgroundColor: colors.page1,
+        // backgroundColor: colors.page1,
       }}
     >
       <Typography
@@ -61,12 +62,12 @@ const DarkGreenPage = ({ slideImages }) => {
           width: "50%",
           fontFamily: "Quicksand, sans-serif",
           fontWeight: 600,
-          fontSize: "2rem", // Increase font size
+          fontSize: { xs: "1.5rem", md: "2rem" }, // Increase font size
           lineHeight: 1.6,
           color: colors.green,
           letterSpacing: "-0.02rem",
           position: "absolute",
-          top: { xs: 1, md: "10%" },
+          top: { xs: "5%", md: "10%" },
           zIndex: 1,
         }}
       >
@@ -81,23 +82,20 @@ const DarkGreenPage = ({ slideImages }) => {
         className="slider-container"
         style={{
           maxWidth: "100%",
-          margin: "15rem auto",
-          // backgroundColor: "#00403d",
-          height: "450px", // Slider height
+          marginTop: "15rem",
           alignContent: "center",
           zIndex: 2,
           borderRadius: "15px",
         }}
       >
-
         <Slider {...settings}>
-          {slideImages.map((image, index) => (
+          {slideImageList.map((image, index) => (
             <Box
               key={index}
-              
               sx={{
                 position: "relative",
-                height: "350px",
+                height: "320px",
+
                 overflow: "hidden",
                 padding: "5px",
                 borderRadius: "15px",
@@ -105,14 +103,14 @@ const DarkGreenPage = ({ slideImages }) => {
               }}
             >
               <img
-                src={`data:image/jpeg;base64,${image.image}`}
+                src={`${image.image}`}
                 alt={`Slide ${index + 1}`}
                 loading="lazy"
                 style={{
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
-                  borderRadius: "15px",
+                  borderRadius: "5px",
                 }}
               />
               <Box
@@ -122,7 +120,7 @@ const DarkGreenPage = ({ slideImages }) => {
                   left: 0,
                   width: "100%",
                   height: "100%",
-                  background: "rgba(0, 0, 0, 0.15)",
+                  background: "rgba(0, 0, 0, 0.09)",
                   borderRadius: "15px",
                 }}
               />
@@ -130,8 +128,9 @@ const DarkGreenPage = ({ slideImages }) => {
           ))}
         </Slider>
       </div>
+
     </Box>
   );
 };
 
-export default DarkGreenPage;
+export default EventSlide;

@@ -39,7 +39,10 @@ axiosPrivate.interceptors.response.use(
 
     // 액세스 토큰 만료 시 401 상태 확인
     // Check for 401 error, and that this request hasn't been retried
-    if (error.response.status === 418 && !originalRequest._retry) {
+    if (
+      error.response.status === 418 ||
+      (error.response.status === 403 && !originalRequest._retry)
+    ) {
       originalRequest._retry = true;
 
       const accessToken = localStorage.getItem("access_token");
@@ -75,10 +78,10 @@ axiosPrivate.interceptors.response.use(
           localStorage.removeItem("role");
 
           // Redirect to login page
-          window.location.href = "http://localhost:8080/";
+          window.location.href = "http://localhost:3000/";
         });
       }
-    } else if (error.response.status === 403) {
+    } else if (error.response.status === 401) {
       Swal.fire({
         icon: "error",
         text: "접근 권한이 없습니다.",
@@ -106,7 +109,7 @@ axiosPublic.interceptors.response.use(
           icon: "error",
           text: "You need to log in to access this page.",
         });
-      } else if (error.response.status === 403) {
+      } else if (error.response.status === 401) {
         Swal.fire({
           icon: "error",
           text: "You don't have permission to access this page.",
