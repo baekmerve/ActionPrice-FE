@@ -1,49 +1,65 @@
 /* eslint-disable no-unused-vars */
 
-import axios from "axios";
-import logo from "./logo.png";
-import textLogo2 from "./textLogo2.png";
-import avocado from "./images/slide/avocado.webp";
-import tomatobg from "./images/tomatobg.webp";
+import cherry from "./images/cherry.webp";
+import cTomato from "./images/cTomato.webp";
+import garlic from "./images/garlic.webp";
+
+import avocado from "./images/avocado.webp";
+import pepper from "./images/pepper.webp";
+import pineapple from "./images/pineapple.webp";
+import lemon from "./images/lemon.webp";
 import w1 from "./images/w1.webp";
+import test1 from "./images/test1.jpg";
+import test2 from "./images/test2.jpg";
+import test3 from "./images/test3.jpg";
 import w2 from "./images/w2.webp";
-import w3 from "./images/w3.webp";
-import w4 from "./images/w4.webp";
-import w5 from "./images/w5.webp";
-import w6 from "./images/w6.webp";
 
+import mixedFruit from "./images/mixedFruit.webp";
+import mixedVeggie from "./images/mixedVeggie.webp";
+import crop from "./images/crop.webp";
+import seafood from "./images/seafood.webp";
+import mushroom from "./images/mushroom.webp";
+import meat from "./images/meat.webp";
 
-export {
-  logo,
-  textLogo2,
-  tomatobg,
-  w1,
-  w2,
-  w3,
-  w4,
-  w5,
-  w6,
-};
+import logo from "./images/logo.png";
+import textLogo2 from "./images/textLogo2.png";
+
+export { logo, textLogo2, w1, w2, test1, test2, test3 };
+
+export const slideImageList = [
+  { name: "avocado", image: avocado },
+  { name: "cTomato", image: cTomato },
+  { name: "garlic", image: garlic },
+  { name: "cherry", image: cherry },
+  { name: "lemon", image: lemon },
+
+  { name: "pepper", image: pepper },
+  { name: "pineapple", image: pineapple },
+];
+
+export const largeCategoryList = [
+  { id: 1, name: "채소류", image: mixedVeggie },
+  { id: 2, name: "식량작물", image: crop },
+  { id: 3, name: "과일류", image: mixedFruit },
+  { id: 4, name: "축산물", image: meat },
+  { id: 5, name: "수산물", image: seafood },
+  { id: 6, name: "특용작물", image: mushroom },
+];
 
 //desc: ui colors
 export const colors = {
   primary: "#00403d",
-
   secondary: "#2ecc71",
   accent: "#e74c3c",
   text: "#2c3e50",
-  white: "#ffffff",
   white2: "#ecf0f1",
-
   button1: "#2C3E50",
   button2: "#CB6040",
   hover1: "#49557e",
   hover2: "#a45f53",
   warning: "#d32f2f",
-
   paperbeige: "#F7F2EF",
   disable: "#d3d3d3",
-
   border: "#0c1e2a",
   link: "#8C6A4A",
   // backgroundColor: "#f8f3e8",
@@ -53,51 +69,13 @@ export const colors = {
   footerText: "#a45f53",
   buttonBorder: "#d3817a",
   rose: "#d3817a",
-
   green: "#00403d",
-
   darkBrown: "#4B2C20",
-
   backgroundColor: " #f8f8f8",
   gray: "#dedad7",
   page1: "#f2eee6",
   tableBackground: "#faf7f2",
 };
-
-const response = await axios.get("http://localhost:8080/");
-const fetchedImages = response.data.images;
-console.log("fetchedImages", fetchedImages);
-
-export const largeCategoryList = [
-  { id: 1, name: "채소류", image: fetchedImages.ve },
-  { id: 2, name: "축산물", image: fetchedImages.meat },
-  { id: 3, name: "과일류", image: fetchedImages.fruit },
-  { id: 4, name: "식량작물", image: fetchedImages.crop },
-  { id: 5, name: "수산물", image: fetchedImages.fish },
-  { id: 6, name: "특용작물", image: fetchedImages.scrop },
-];
-
-export const slideImageList = [
-  { name: "avocado", image: fetchedImages.avocado },
-  { name: "banana", image: fetchedImages.banana },
-  { name: "berry", image: fetchedImages.berry },
-  { name: "onion3", image: fetchedImages.onion3 },
-  { name: "cTomato", image: fetchedImages.cTomato },
-  { name: "garlic", image: fetchedImages.garlic },
-  { name: "mixedFruit", image: fetchedImages.mixedFruit },
-  { name: "mixedVeggies3", image: fetchedImages.mixedVeggies3 },
-  { name: "morlahana", image: fetchedImages.morlahana },
-  { name: "nar", image: fetchedImages.nar },
-  { name: "onion", image: fetchedImages.onion },
-  { name: "cherry", image: fetchedImages.cherry },
-  { name: "pear", image: fetchedImages.pear },
-  { name: "pepper", image: fetchedImages.pepper },
-  { name: "onion2", image: fetchedImages.onion2 },
-  { name: "pineapple", image: fetchedImages.pineapple },
-  { name: "watermelon", image: fetchedImages.watermelon },
-  { name: "walnut", image: fetchedImages.walnut },
-  { name: "mixedVeggie", image: fetchedImages.mixedVeggie },
-];
 
 //desc: admin answer list
 export const adminAnswers = [

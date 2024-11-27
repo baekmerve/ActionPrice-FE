@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { colors, largeCategoryList } from "../../assets/assest.js";
 
@@ -167,104 +167,124 @@ const CategoryDetail = ({
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", sm: "column", md: "row" },
-        alignItems: "center",
-        justifyContent: "center",
-        gap: { xs: 4, sm: 4, md: 1 },
-
-        width: "90%",
-      }}
-    >
-      {/* Category Selects */}
-      <CategorySelect
-        label="대분류를 선택하세요"
-        value={selectedLarge}
-        handleCategoryChange={handleCategoryChange}
-        categoryList={largeCategoryList}
-        categoryType="large"
-      />
-
-      <CategorySelect
-        label="중분류를 선택하세요"
-        value={selectedMiddle}
-        handleCategoryChange={handleCategoryChange}
-        categoryList={middleCategoryList}
-        categoryType="middle"
-      />
-
-      <CategorySelect
-        label="소분류를 선택하세요"
-        value={selectedSmall}
-        handleCategoryChange={handleCategoryChange}
-        categoryList={smallCategoryList}
-        categoryType="small"
-      />
-
-      <CategorySelect
-        label="등급을 선택하세요"
-        value={selectedRank}
-        handleCategoryChange={handleCategoryChange}
-        categoryList={rankList}
-        categoryType="rank"
-      />
+    <>
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: { xs: "column", sm: "column", md: "row" },
           alignItems: "center",
-          gap: { xs: 4, md: 2 },
+          justifyContent: "space-between",
+          gap: { xs: 4, sm: 4, md: 1 },
+          width: "90%",
+
         }}
       >
-        <DateChange
-          selectedStartDate={selectedStartDate}
-          setSelectedStartDate={setSelectedStartDate}
-          selectedEndDate={selectedEndDate}
-          setSelectedEndDate={setSelectedEndDate}
-        />
+        {/* Category Selects */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+            gap: 2,
+            width: "100%",
+            justifyContent: "space-between",
+        
+          }}
+        >
+          <CategorySelect
+            label="대분류를 선택하세요"
+            value={selectedLarge}
+            handleCategoryChange={handleCategoryChange}
+            categoryList={largeCategoryList}
+            categoryType="large"
+          />
 
-        <Box sx={{ display: "flex", gap: 1, mt: { xs: 2, md: 0 } }}>
-          <Button
-            sx={{
-              color: "#00403d",
-              border: "1px solid #00403d",
-              cursor: "pointer",
-              "&:hover": {
-                color: "white",
-                backgroundColor: "#00403d",
-                boxShadow: "0px 4px 8px rgba(1, 2, 2, 0.2)", // Adds shadow on hover
-              },
-            }}
-            disabled={
-              !selectedLarge ||
-              !selectedMiddle ||
-              !selectedSmall ||
-              !selectedRank
-            }
-            onClick={handleSearch}
-          >
-            조회
-          </Button>
-          <Button
-            sx={{
-              color: colors.brown,
-              border: "1px solid #7b482d",
-              cursor: "pointer",
-              "&:hover": {
-                color: "white",
-                backgroundColor: colors.brown,
-                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Adds shadow on hover
-              },
-            }}
-            onClick={handleReset}
-          >
-            초기화
-          </Button>
+          <CategorySelect
+            label="중분류를 선택하세요"
+            value={selectedMiddle}
+            handleCategoryChange={handleCategoryChange}
+            categoryList={middleCategoryList}
+            categoryType="middle"
+          />
+
+          <CategorySelect
+            label="소분류를 선택하세요"
+            value={selectedSmall}
+            handleCategoryChange={handleCategoryChange}
+            categoryList={smallCategoryList}
+            categoryType="small"
+          />
+
+          <CategorySelect
+            label="등급을 선택하세요"
+            value={selectedRank}
+            handleCategoryChange={handleCategoryChange}
+            categoryList={rankList}
+            categoryType="rank"
+          />
+        </Box>
+
+        {/* Date Filters */}
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            alignItems: "center",
+            justifyContent: "space-between",
+
+          }}
+        >
+          <DateChange
+            selectedStartDate={selectedStartDate}
+            setSelectedStartDate={setSelectedStartDate}
+            selectedEndDate={selectedEndDate}
+            setSelectedEndDate={setSelectedEndDate}
+          />
         </Box>
       </Box>
-    </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: {md:"flex-end", xs: "center"},
+          gap: 2,
+          mt: { xs: 2, md: 0 },
+          width: "90%",
+        }}
+      >
+        <Button
+          sx={{
+            color: "#00403d",
+            border: "1px solid #00403d",
+            cursor: "pointer",
+            "&:hover": {
+              color: "white",
+              backgroundColor: "#00403d",
+              boxShadow: "0px 4px 8px rgba(1, 2, 2, 0.2)", // Adds shadow on hover
+            },
+          }}
+          disabled={
+            !selectedLarge || !selectedMiddle || !selectedSmall || !selectedRank
+          }
+          onClick={handleSearch}
+        >
+          조회
+        </Button>
+        <Button
+          sx={{
+            color: colors.brown,
+            border: "1px solid #7b482d",
+            cursor: "pointer",
+            "&:hover": {
+              color: "white",
+              backgroundColor: colors.brown,
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Adds shadow on hover
+            },
+          }}
+          onClick={handleReset}
+        >
+          초기화
+        </Button>
+      </Box>
+    </>
   );
 };
 export default CategoryDetail;

@@ -71,7 +71,7 @@ const Favorites = ({ username }) => {
   if (status === "failed") return <Typography>Error: {error}</Typography>;
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box sx={{mX:5}}>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}
@@ -85,7 +85,7 @@ const Favorites = ({ username }) => {
         sx={{
           color: colors.darkBrown,
           mb: 5,
-          padding: 3,
+          padding: 2,
           borderRadius: 2,
           boxShadow: 2,
           display: "flex",

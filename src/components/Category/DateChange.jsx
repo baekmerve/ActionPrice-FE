@@ -63,8 +63,6 @@ const DateChange = ({
             borderColor: "#00403d", // focused border color
           },
         },
-
-        // minWidth: 100,
       }}
     >
       <Box>

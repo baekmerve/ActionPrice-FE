@@ -87,16 +87,16 @@ const Sidebar = () => {
     <Box
       open={isOpen}
       sx={{
-
         padding: 2,
         height: "100%",
         position: "fixed",
         overflowY: "auto",
         top: "3rem",
         left: 0,
-        width: isOpen ? 250 : 100,
+        width: isOpen ? "230px" : "100px",
         flexShrink: 0,
         zIndex: 2,
+        boxShadow:4
       }}
     >
       <List>

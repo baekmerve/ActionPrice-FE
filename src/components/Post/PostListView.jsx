@@ -1,16 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
-import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import LockIcon from "@mui/icons-material/Lock";
 import { Link } from "react-router-dom";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { format } from "date-fns";
 
 import { colors } from "../../assets/assest";
@@ -46,90 +44,76 @@ const PostListView = ({ postList = [], pageNum }) => {
   };
 
   return (
- 
-      <TableContainer
-        sx={{
-          marginTop: 2,
-          marginBottom: 2,
-          border: "1px solid red",
-          width: "100%",
-          borderRadius: 2,
-          boxShadow: 3,
-        }}
-      >
-        <Table aria-label="custom styled table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>No</StyledTableCell>
-              <StyledTableCell>등록일</StyledTableCell>
-              <StyledTableCell>제목</StyledTableCell>
-              <StyledTableCell>작성자</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {postList && postList.length > 0 ? (
-              postList.map((post, index) => (
-                <TableRow
-                  key={post.postId}
-                  sx={{
-                    "&:nth-of-type(even)": {
-                      backgroundColor: "#f9f9f9",
-                    },
-                    "&:hover": {
-                      backgroundColor: "#f0f0f0",
-                    },
-                  }}
-                >
-                  <TableCell
-                    sx={{
-                      "&:hover": {
-                        fontSize: "19px", // increased font size on hover
-                        fontWeight: 600,
-                      },
-                    }}
-                  >
-                    {(pageNum - 1) * itemsPerPage + index + 1}
-                  </TableCell>
-                  <TableCell>{formatDate(post.createdAt)}</TableCell>
-                  <TableCell>
-                    {!post.published &&
-                    logined_username !== post.username &&
-                    role !== "ROLE_ADMIN" ? (
-                      <span style={{ display: "flex", alignItems: "center" }}>
-                        <LockIcon style={{ marginRight: 5 }} /> 비밀 글입니다.
-                      </span>
-                    ) : (
-                      <Link
-                        to={`/api/post/${post.postId}/detail?page=1`}
-                        style={{
-                          color: colors.link,
-                          textDecoration: "none",
-                        }}
-                        sx={{
-                          "&:hover": {
-                            fontWeight: 600,
-                            fontSize: "19px",
-                          },
-                        }}
-                      >
-                        {post.title}
-                      </Link>
-                    )}
-                  </TableCell>
-                  <TableCell>{post.username}</TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={3} align="center">
-                  <Typography>게시글이 없습니다</Typography>
+    <Box
+      sx={{
+        marginTop: 2,
+        marginBottom: 2,
+        borderRadius: "15px",
+        boxShadow: 3,
+      }}
+    >
+      <Table aria-label="custom styled table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>No</StyledTableCell>
+            <StyledTableCell>등록일</StyledTableCell>
+            <StyledTableCell>제목</StyledTableCell>
+            <StyledTableCell>작성자</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {postList && postList.length > 0 ? (
+            postList.map((post, index) => (
+              <TableRow
+                key={post.postId}
+                sx={{
+                  "&:nth-of-type(even)": {
+                    backgroundColor: "#f9f9f9",
+                  },
+                  "&:nth-of-type(odd)": {
+                    backgroundColor: "#F7F2EF",
+                  },
+                  "&:hover": {
+                    backgroundColor: "#f2eee6",
+                  },
+                }}
+              >
+                <TableCell>
+                  {(pageNum - 1) * itemsPerPage + index + 1}
                 </TableCell>
+                <TableCell>{formatDate(post.createdAt)}</TableCell>
+                <TableCell>
+                  {!post.published &&
+                  logined_username !== post.username &&
+                  role !== "ROLE_ADMIN" ? (
+                    <span style={{ display: "flex", alignItems: "center" }}>
+                      <LockIcon style={{ marginRight: 5 }} /> 비밀 글입니다.
+                    </span>
+                  ) : (
+                    <Link
+                      to={`/api/post/${post.postId}/detail?page=1`}
+                      style={{
+                        color: colors.green,
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {post.title}
+                    </Link>
+                  )}
+                </TableCell>
+                <TableCell>{post.username}</TableCell>
               </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={3} align="center">
+                <Typography>게시글이 없습니다</Typography>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </Box>
   );
 };
 

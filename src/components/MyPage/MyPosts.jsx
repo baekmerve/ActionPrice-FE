@@ -57,8 +57,8 @@ const MyPosts = ({ username }) => {
         gutterBottom
         sx={{
           color: colors.darkBrown,
-          mb: 5,
-          padding: 3,
+          mb: 3,
+          padding: 2,
           borderRadius: 2,
           boxShadow: 2,
           display: "flex",
@@ -78,7 +78,7 @@ const MyPosts = ({ username }) => {
         />
       </Box>
 
-      <PostListView postList={myPosts} pageNum={pageNum} />
+      <PostListView postList={myPosts} pageNum={pageNum}/>
       <Pagination
         count={totalPageNum}
         page={pageNum}

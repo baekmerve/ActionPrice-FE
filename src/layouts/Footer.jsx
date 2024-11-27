@@ -7,7 +7,8 @@ import {
   Link as MUILink,
   IconButton,
 } from "@mui/material";
-import { logo, colors } from "../assets/assest";
+import { colors, logo } from "../assets/assest";
+
 import { Link } from "react-router-dom";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";

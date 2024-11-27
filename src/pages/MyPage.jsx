@@ -19,15 +19,16 @@ const MyPage = () => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        ml: "10rem",
+        ml: "200px",
         minHeight: "100vh",
       }}
     >
       <Sidebar />
       <Box
         sx={{
-          pt: 10,
-           width: "calc(100% - 250)",
+          pt: 5,
+          minWidth: "calc(100% - 230px)",
+
         }}
       >
         <Suspense fallback={<div>Loading...</div>}>
