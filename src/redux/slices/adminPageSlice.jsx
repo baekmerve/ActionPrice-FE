@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import Swal from "sweetalert2";
 const initialState = {
   userList: [],
   currentPageNum: 1,
   totalPageNum: 0, // 총 페이지 수
   loading: false,
   error: null,
+  userNumber:0,
 };
 
 const baseUrl = "http://localhost:8080/api";
@@ -30,14 +30,6 @@ export const fetchUserList = createAsyncThunk(
       console.log("fetchUserList:", response.data);
       return response.data;
     } catch (error) {
-      if (error.response && error.response.status === 403) {
-        Swal.fire({
-          icon: "error",
-          title: "접근 금지",
-          text: "접근 권한이 없습니다.",
-        });
-        return rejectWithValue("접근 권한이 없습니다.");
-      }
       return rejectWithValue(error.response.data);
     }
   }
@@ -132,6 +124,7 @@ const adminPageSlice = createSlice({
       .addCase(fetchUserList.fulfilled, (state, action) => {
         state.loading = false;
         state.userList = action.payload.userList;
+        state.userNumber = action.payload.listSize;
         state.totalPageNum = action.payload.totalPageNum;
         state.currentPageNum = action.payload.currentPageNum;
       })

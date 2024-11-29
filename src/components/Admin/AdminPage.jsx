@@ -4,14 +4,14 @@
 import React, { useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { colors } from "../../assets/assest.js";
 
 import { Link, useSearchParams } from "react-router-dom";
-import { Box, Pagination, Typography } from "@mui/material";
+import { Avatar, Box, Pagination, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchUserList,
@@ -33,12 +33,11 @@ const StyledTableCell = (props) => (
 );
 
 const AdminPage = () => {
-  const itemsPerPage = 10;
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const pageNum = parseInt(searchParams.get("pageNum")) || 1;
   const keyword = searchParams.get("keyword") || "";
-  const { userList, totalPageNum, error } = useSelector(
+  const { userList, totalPageNum, error, userNumber } = useSelector(
     (state) => state.adminPage
   );
 
@@ -77,43 +76,72 @@ const AdminPage = () => {
     <Box
       sx={{
         width: "100%",
-        minHeight: "100vh",
+        justifyContent: "center",
+        alignItems: "center",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
       }}
     >
-      <Typography
-        variant="h4"
-        sx={{ mt: "5rem", textAlign: "center", color: colors.darkBrown }}
+      <Box
+        sx={{
+          marginY: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignSelf: "flex-end",
+          justifyContent: "center",
+          paddingX: 10,
+        }}
       >
-        사용자 목록
-      </Typography>
-      <div style={{ display: "flex", alignSelf: "flex-end" }}>
+        <Typography sx={{ paddingLeft: 3 }}>
+          전체 사용자:{" "}
+          <span style={{ fontSize: "30px", color: colors.green }}>
+            {userNumber}
+          </span>{" "}
+          명
+        </Typography>
+
         <PostSearch
           keyword={keyword}
           onSearch={handleSearch}
           onReset={handleResetSearch}
         />
-      </div>
-
+      </Box>
       <TableContainer
         sx={{
           borderRadius: 2,
           boxShadow: 3,
+          width: "90%",
+          backgroundColor: "#f9f9f9",
         }}
       >
         <Table aria-label="User List Table">
           <TableHead>
-            <TableRow>
-              <StyledTableCell>No</StyledTableCell>
-              <StyledTableCell>Username</StyledTableCell>
-              <StyledTableCell>Email</StyledTableCell>
-              <StyledTableCell>Posts</StyledTableCell>
-              <StyledTableCell>Comments</StyledTableCell>
-              <StyledTableCell>Authorities</StyledTableCell>
-              <StyledTableCell>Blocked</StyledTableCell>
-              <StyledTableCell>Token Reset</StyledTableCell>
+            <TableRow sx={{ height: "80px" }}>
+              <StyledTableCell>
+                <Typography variant="body1"></Typography>
+              </StyledTableCell>
+
+              <StyledTableCell>
+                <Typography variant="body1">유저네임</Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="body1">이메일</Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="body1">게시글</Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="body1">뎃글 수</Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="body1">관리</Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="body1">차단 / 해제</Typography>
+              </StyledTableCell>
+              <StyledTableCell>
+                <Typography variant="body1">토큰 리셋</Typography>
+              </StyledTableCell>
             </TableRow>
           </TableHead>
 
@@ -126,44 +154,57 @@ const AdminPage = () => {
               </TableRow>
             ) : (
               userList.map((user, index) => (
-                <TableRow
-                  key={user.username}
-                  sx={{
-                    "&:nth-of-type(even)": {
-                      backgroundColor: "#F7F2EF",
-                    },
-                    "&:hover": {
-                      backgroundColor: "#f8f8f8",
-                    },
-                  }}
-                >
+                <TableRow key={user.username}>
+                  <TableCell></TableCell>
                   <TableCell>
-                    {(pageNum - 1) * itemsPerPage + index + 1}
+                    <Link
+                      to={`/api/mypage/${user.username}/myposts`}
+                      style={{ color: colors.button1, textDecoration: "none" }}
+                    >
+                      <Box sx={{ display: "flex", alignItems: "center" }}>
+                        <Avatar
+                          sx={{
+                            bgcolor: colors.green,
+                            color: "white",
+                            width: 30,
+                            height: 30,
+                            marginRight: 2,
+                          }}
+                        />
+
+                        <Typography variant="body1">{user.username}</Typography>
+                      </Box>
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body1">{user.email}</Typography>
                   </TableCell>
                   <TableCell>
                     <Link
                       to={`/api/mypage/${user.username}/myposts`}
                       style={{ color: colors.button1 }}
                     >
-                      {user.username}
+                      <Typography variant="body1">{user.postCount}</Typography>
                     </Link>
                   </TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>{user.postCount}</TableCell>
-                  <TableCell>{user.commentCount}</TableCell>
-                  <TableCell>{user.authorities}</TableCell>
+                  <TableCell>
+                    <Typography variant="body1">{user.commentCount}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body1">{user.authorities}</Typography>
+                  </TableCell>
                   <TableCell>
                     {user.tokenExpiresAt === null ? (
-                      "None"
+                      <Typography variant="body1">None</Typography>
                     ) : (
                       <Button
                         variant="contained"
                         sx={{
-                          border: `1px solid ${colors.green}`,
-                          backgroundColor: "white",
-                          color: colors.green,
+                          padding: "3px 2px",
+                          backgroundColor: colors.green,
+                          color: "white",
                           "&:hover": {
-                            backgroundColor: colors.green,
+                            backgroundColor: colors.warning,
                             color: "white",
                           },
                         }}
@@ -175,11 +216,18 @@ const AdminPage = () => {
                   </TableCell>
                   <TableCell>
                     {user.tokenExpiresAt === null ? (
-                      "None"
+                      <Typography variant="body1">None</Typography>
                     ) : (
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: colors.button1 }}
+                        sx={{
+                          padding: "3px 2px",
+                          backgroundColor: colors.darkBrown,
+                          color: "white",
+                          border: "none",
+                          borderRadius: "5px",
+                          cursor: "pointer",
+                        }}
                         onClick={() => handleResetRefreshToken(user.username)}
                       >
                         Reset
@@ -198,7 +246,7 @@ const AdminPage = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          mt: 2,
+          mt: 3,
         }}
       >
         <Pagination
@@ -206,7 +254,7 @@ const AdminPage = () => {
           page={pageNum} // Current page
           onChange={handlePageChange}
           variant="outlined"
-          sx={{ margin: "auto" }}
+          sx={{ margin: 2 }}
         />
       </Box>
     </Box>

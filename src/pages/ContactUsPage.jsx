@@ -88,7 +88,13 @@ const ContactUsPage = () => {
         <Button
           variant="contained"
           onClick={() => navigate("/api/post/create")}
-          sx={{ backgroundColor: colors.green }}
+          sx={{ backgroundColor: colors.green,
+            width: 100,
+            height: 50,
+            padding:2,
+            borderRadius:"10px",
+            fontSize:"15px",
+          }}
         >
           문의하기
         </Button>

@@ -71,7 +71,7 @@ const Favorites = ({ username }) => {
   if (status === "failed") return <Typography>Error: {error}</Typography>;
 
   return (
-    <Box sx={{mX:5}}>
+    <Box sx={{ mX: 5 }}>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={loading}
@@ -90,6 +90,7 @@ const Favorites = ({ username }) => {
           boxShadow: 2,
           display: "flex",
           justifySelf: "flex-start",
+          ml: 15,
         }}
       >
         {username}님의 즐겨찾기 목록
@@ -98,10 +99,11 @@ const Favorites = ({ username }) => {
       <Box
         sx={{
           display: "flex",
+          ml: 15,
           flexDirection: "column",
           justifyContent: "center",
           gap: 1,
-          bgcolor: colors.paperbeige,
+          bgcolor: "#f9f9f9",
           padding: 3,
           borderRadius: 2,
           border: `1px solid ${colors.rose}`,
@@ -157,7 +159,7 @@ const Favorites = ({ username }) => {
                 onClick={() => handleDeleteFavorite(favorite.favoriteId)}
                 sx={{
                   color: colors.darkBrown,
-                  border: `2px solid ${colors.rose}`,
+                  border: `2px solid ${colors.green}`,
                   "&:hover": {
                     backgroundColor: colors.rose,
                     color: "white",

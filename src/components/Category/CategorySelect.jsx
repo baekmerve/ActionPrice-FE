@@ -14,13 +14,12 @@ const CategorySelect = ({
   return (
     <FormControl
       sx={{
-        // width: 250,
         width: { sx:"100%", md:"80%"},
-        // minWidth: 200,
+
         justifyContent: "center",
         "& .MuiOutlinedInput-root": {
           "& fieldset": {
-            borderColor: "#00403d", // default border color
+            border: "2px solid #00403d", // default border color
           },
 
           "&.Mui-focused fieldset": {

@@ -41,7 +41,6 @@ const ProductListView = ({ productList, pageNum }) => {
   };
 
   return (
-
     <TableContainer sx={{ width: "90%", borderRadius: 2, boxShadow: 3 }}>
       <Table aria-label="sticky table">
         <TableHead>
@@ -63,11 +62,9 @@ const ProductListView = ({ productList, pageNum }) => {
               <TableRow
                 key={product.delId}
                 sx={{
-                  "&:nth-of-type(even)": {
-                    backgroundColor: "#f9f9f9",
-                  },
+                  backgroundColor: "#f9f9f9",
                   "&:hover": {
-                    backgroundColor: "#f0f0f0",
+                    backgroundColor: "#F7F2EF",
                   },
                 }}
               >
@@ -94,7 +91,6 @@ const ProductListView = ({ productList, pageNum }) => {
         </TableBody>
       </Table>
     </TableContainer>
-
   );
 };
 export default ProductListView;
