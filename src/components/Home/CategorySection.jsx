@@ -13,8 +13,10 @@ import {
   Typography,
   Alert,
   Box,
+
 } from "@mui/material";
 import { colors } from "../../assets/assest";
+
 
 const CategorySection = ({ categories, error }) => {
   const navigate = useNavigate();
@@ -32,27 +34,25 @@ const CategorySection = ({ categories, error }) => {
   }
   return (
     <Box
-      id="categories"
       sx={{
         minHeight: "100vh",
-        //  backgroundColor: colors.green,
         display: "flex",
-        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        padding: 5,
-        margin: 1,
-        borderRadius: "25px",
       }}
     >
+      {/* Left half with green background */}
       <Box
         sx={{
+          width: "50%",
+          minHeight: "100vh",
+          backgroundColor: colors.rose, // Set green background here
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          marginTop: "5rem",
-          width: "100%",
-          justifyContent: "center",
+          justifyContent: "center", // Center the content vertically
+          alignItems: "center", // Center the content horizontally
+          padding: 3,
+          borderRadius: "0 30px 30px 0",
         }}
       >
         <Typography
@@ -61,7 +61,7 @@ const CategorySection = ({ categories, error }) => {
             textAlign: "center",
             fontWeight: "bold",
             letterSpacing: "-0.02rem",
-            color: "#00403d",
+            color: colors.page1,
             fontSize: { xs: "1.3rem", sm: "1.5rem", md: "2rem" },
             lineHeight: 1.5,
           }}
@@ -81,170 +81,122 @@ const CategorySection = ({ categories, error }) => {
           variant="h4"
           sx={{
             textAlign: "center",
-            width: "60%",
-            fontSize: { xs: "1rem", ms: "1.3rem", md: "1.5rem" },
+            fontSize: { xs: "1rem", sm: "1.3rem", md: "1.5rem" },
             lineHeight: 1.5,
             marginTop: "1rem",
-            color: colors.brown,
+            color: colors.page1, // Adjust the color to your requirement
           }}
         >
           전국의 도매 시장에서 거래되는 채소, 축산물, 과일, 식량작물, 수산물,
-          특용작물 등의 가격 데이터를 제공합니다. 현재 거래되는 가격이 궁금한
-          식자재 품목을 선택하세요.
+          특용작물 등의 가격 데이터를 제공합니다.
         </Typography>
       </Box>
 
-      {/* <Grid
-        container
-        spacing={3}
-        justifyContent="center"
-        alignItems="center"
-        margin={3}
+      {/* Right half with white background */}
+      <Box
         sx={{
-          borderRadius: "15px",
-          width: "80%",
+          width: "50%",
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        {categories.map((category) => (
-          <Grid item xs={12} sm={6} md={4} key={category.id} marginBottom={3}>
-            <Card
-              onClick={() => handleCategoryClick(category)}
-              sx={{
-                cursor: "pointer",
-                position: "relative",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-                boxShadow: 3,
-                borderRadius: 2,
-
-                "&:hover": {
-                  boxShadow: 10,
-                  transform: "scale(1.05)",
-                  "& .overlay": {
-                    transform: "translateY(0)",
-                    backgroundColor: "rgba(0, 0, 0, 0.3)",
-                  },
-                },
-              }}
+        <Typography
+          variant="h4"
+          sx={{
+            textAlign: "center",
+            fontSize: { xs: "1rem", sm: "1.3rem", md: "1.5rem" },
+            lineHeight: 1.5,
+            marginTop: "1rem",
+            color: colors.tableHead,
+          }}
+        >
+          현재 거래되는 가격이 궁금한 식자재 품목을 선택하세요.
+        </Typography>
+        <Grid
+          container
+          spacing={3}
+          margin={5}
+          sx={{
+            width: "80%",
+          }}
+        >
+          {categories.map((category) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={category.id}
+              sx={{ marginY: 1 }}
             >
-              <CardMedia
-                component="img"
-                image={`${category.image}`}
-                alt={category.name}
-                loading="lazy"
+              <Card
+                onClick={() => handleCategoryClick(category)}
                 sx={{
-                  height: 300,
-                  width: "100%",
-                  objectFit: "cover",
-                  filter: "brightness(0.85)",
-                  transition: "filter 0.5s ease",
-                }}
-              />
-              <Box
-                className="overlay"
-                sx={{
-                  position: "absolute",
-                  bottom: 0,
-                  width: "100%",
+                  cursor: "pointer",
+                  position: "relative",
+                  overflow: "hidden",
+                  borderRadius: "15px",
                   height: "100%",
-                  color: "white",
                   display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                   flexDirection: "column",
-                  transform: "translateY(100%)",
-                  transition: "transform 0.6s ease",
-                  textAlign: "center",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  boxShadow: 5,
+                  "&:hover": {
+                    transform: "translateY(-5px) scale(1.03)",
+                    boxShadow: 8,
+                    "& .overlay": {
+                      transform: "translateY(0)",
+                      backgroundColor: "rgba(0, 0, 0, 0.3)",
+                    },
+                  },
                 }}
               >
-                <Typography variant="h4" component="div">
-                  {category.name}
-                </Typography>
-              </Box>
-            </Card>
-          </Grid>
-        ))}
-      </Grid> */}
+                {/* Card Image */}
+                <CardMedia
+                  component="img"
+                  image={category.image}
+                  alt={category.name}
+                  loading="lazy"
+                  sx={{
+                    height: 220,
+                    width: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.4s ease, filter 0.4s ease",
+                    filter: "brightness(0.9)",
+                  }}
+                />
 
-      <Grid
-        container
-        spacing={3}
-        justifyContent="center"
-        alignItems="center"
-        margin={3}
-        sx={{
-          width: "80%",
-        }}
-      >
-        {categories.map((category) => (
-          <Grid item xs={12} sm={6} md={4} key={category.id}>
-            <Card
-              onClick={() => handleCategoryClick(category)}
-              sx={{
-                cursor: "pointer",
-                position: "relative",
-                overflow: "hidden",
-                borderRadius: "20px",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                boxShadow: 3,
-
-                "&:hover": {
-                  transform: "translateY(-5px) scale(1.03)",
-                  boxShadow: 8,
-                  "& .overlay": {
-                    transform: "translateY(0)",
-                    backgroundColor: "rgba(0, 0, 0, 0.3)",
-                  },
-                },
-              }}
-            >
-              {/* Card Image */}
-              <CardMedia
-                component="img"
-                image={category.image}
-                alt={category.name}
-                loading="lazy"
-                sx={{
-                  height: 250,
-                  width: "100%",
-                  objectFit: "cover",
-                  transition: "transform 0.4s ease, filter 0.4s ease",
-                  filter: "brightness(0.8)",
-                }}
-              />
-
-              {/* Gradient Overlay */}
-              <Box
-                className="overlay"
-                sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                  transform: "translateY(100%)",
-                  transition: "transform 0.6s ease",
-                  textAlign: "center",
-                }}
-              >
-                <Typography variant="h4" component="div">
-                  {category.name}
-                </Typography>
-              </Box>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+                {/* Gradient Overlay */}
+                <Box
+                  className="overlay"
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    color: "white",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexDirection: "column",
+                    transform: "translateY(100%)",
+                    transition: "transform 0.6s ease",
+                    textAlign: "center",
+                  }}
+                >
+                  <Typography variant="h4" component="div">
+                    {category.name}
+                  </Typography>
+                </Box>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
     </Box>
   );
 };

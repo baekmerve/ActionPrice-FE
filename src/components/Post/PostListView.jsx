@@ -50,11 +50,13 @@ const PostListView = ({ postList = [], pageNum }) => {
         marginBottom: 2,
         borderRadius: "15px",
         boxShadow: 3,
+         overflowX:"auto"
       }}
     >
       <Table aria-label="custom styled table">
         <TableHead>
           <TableRow>
+            
             <StyledTableCell>No</StyledTableCell>
             <StyledTableCell>등록일</StyledTableCell>
             <StyledTableCell>제목</StyledTableCell>
@@ -67,14 +69,9 @@ const PostListView = ({ postList = [], pageNum }) => {
               <TableRow
                 key={post.postId}
                 sx={{
-                  "&:nth-of-type(even)": {
-                    backgroundColor: "#f9f9f9",
-                  },
-                  "&:nth-of-type(odd)": {
-                    backgroundColor: "#F7F2EF",
-                  },
+                  backgroundColor: "#f9f9f9",
                   "&:hover": {
-                    backgroundColor: "#f2eee6",
+                    backgroundColor: "#F7F2EF",
                   },
                 }}
               >
@@ -94,7 +91,6 @@ const PostListView = ({ postList = [], pageNum }) => {
                       to={`/api/post/${post.postId}/detail?page=1`}
                       style={{
                         color: colors.green,
-                        fontStyle: "italic",
                       }}
                     >
                       {post.title}

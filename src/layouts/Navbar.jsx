@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { colors, textLogo2} from "../assets/assest.js";
+import { colors, textLogo} from "../assets/assest.js";
 import { logoutUser } from "../redux/slices/loginSlice.jsx";
 
 function Navbar({ toggleSidebar }) {
@@ -51,13 +51,13 @@ function Navbar({ toggleSidebar }) {
   return (
     <AppBar
       position="sticky"
-      elevation={4}
       sx={{
-        backgroundColor: colors.green,
+        backgroundColor: colors.paperbeige,
         height: 100,
         justifyContent: "center",
-        color: colors.white2,
-        borderRadius: "0 0 12px 12px",
+        // color: colors.white2,
+        color: colors.green,
+        //borderRadius: "0 0 12px 12px",
       }}
     >
       <Container maxWidth="xl">
@@ -72,7 +72,7 @@ function Navbar({ toggleSidebar }) {
               display: { xs: "none", md: "flex" },
             }}
           >
-            <img src={textLogo2} alt="logo" style={{ width: "130px" }} />
+            <img src={textLogo} alt="logo" style={{ width: "130px" }} />
           </Typography>
 
           {/* Menu Button for Mobile */}
@@ -132,9 +132,12 @@ function Navbar({ toggleSidebar }) {
               component={Link}
               to="/"
               sx={{
-                color: "white",
+                color: "inherit",
                 borderRadius: "12px",
-                "&:hover": { backgroundColor: colors.hover2 },
+                "&:hover": {
+                  backgroundColor: colors.green,
+                  color: colors.paperbeige,
+                },
               }}
             >
               Home
@@ -143,9 +146,12 @@ function Navbar({ toggleSidebar }) {
               component={Link}
               to="api/category"
               sx={{
-                color: "white",
+                color: "inherit",
                 borderRadius: "12px",
-                "&:hover": { backgroundColor: colors.hover2 },
+                "&:hover": {
+                  backgroundColor: colors.green,
+                  color: colors.paperbeige,
+                },
               }}
             >
               Category
@@ -154,9 +160,12 @@ function Navbar({ toggleSidebar }) {
               component={Link}
               to="api/contact-us"
               sx={{
-                color: "white",
+                color: "inherit",
                 borderRadius: "12px",
-                "&:hover": { backgroundColor: colors.hover2 },
+                "&:hover": {
+                  backgroundColor: colors.green,
+                  color: colors.paperbeige,
+                },
               }}
             >
               Contact Us
@@ -166,7 +175,7 @@ function Navbar({ toggleSidebar }) {
           {/* User Menu */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             {isLoggedIn ? (
-              <Box 
+              <Box
               // sx={{ display: "flex", alignItems: "center" }}
               >
                 {role === "ROLE_ADMIN" && (
@@ -174,9 +183,13 @@ function Navbar({ toggleSidebar }) {
                     component={Link}
                     to="/api/admin/userlist"
                     sx={{
-                      color: "white",
+                      color: "inherit",
                       borderRadius: "12px",
-                      "&:hover": { backgroundColor: colors.hover2 },
+                      margin: "10px",
+                      "&:hover": {
+                        backgroundColor: colors.green,
+                        color: colors.paperbeige,
+                      },
                     }}
                   >
                     Admin Page
@@ -186,7 +199,9 @@ function Navbar({ toggleSidebar }) {
                   onClick={handleOpenUserMenu}
                   sx={{ p: 0, marginLeft: 2 }}
                 >
-                  <AccountCircle sx={{ color: "white", fontSize: "28px" }} />
+                  <AccountCircle
+                    sx={{ color: colors.green, fontSize: "28px" }}
+                  />
                 </IconButton>
                 <Menu
                   sx={{ mt: "45px" }}
@@ -218,12 +233,13 @@ function Navbar({ toggleSidebar }) {
               <Button
                 onClick={() => navigate("/api/user/login")}
                 sx={{
-                  color: "white",
-                  border: "1px solid white",
+                  color: colors.green,
+            
+
                   borderRadius: "12px",
                   paddingX: 2,
                   marginLeft: 2,
-                  "&:hover": { backgroundColor: colors.button2 },
+                  "&:hover": { backgroundColor: colors.button2, color: colors.page1},
                 }}
               >
                 로그인

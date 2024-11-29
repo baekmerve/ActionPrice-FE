@@ -14,19 +14,19 @@ const AppLayout = ({ children }) => {
           minHeight: "100vh",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#f9f7f1",
+          backgroundColor: colors.green,
         }}
       >
         <Navbar />
         <Box
           component="main"
           sx={{
-            backgroundColor: "#f9f7f1",
+            backgroundColor: colors.paperbeige,
             width: "100%",
             flex: 1, // Allows main to expand to push the footer down
-            mx: "auto", // Centers the main content horizontally
-            px: { xs: 2, sm: 4 },
-       
+            // mx: "auto", // Centers the main content horizontally
+            // px: { xs: 2, sm: 4 },
+         
           }}
         >
           {children}

@@ -74,8 +74,6 @@ const PriceGraphView = ({ timeIntervals, priceData, countries }) => {
         className="price-graph-container"
         style={{
           zIndex: 2,
-          // marginTop: "10rem",
-          // marginBottom: "26rem",
           padding: "2rem 2rem",
           backgroundColor: "#f9f9f9",
           borderRadius: "8px",
@@ -178,4 +176,4 @@ const PriceGraphView = ({ timeIntervals, priceData, countries }) => {
   );
 };
 
-export default PriceGraphView;
+ export default PriceGraphView;

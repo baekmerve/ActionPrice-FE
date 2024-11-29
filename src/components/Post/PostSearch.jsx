@@ -33,7 +33,8 @@ const PostSearch = ({ onSearch, keyword }) => {
       value={searchKeyword}
       onChange={handleChange}
       sx={{
-        mb: 2,
+        m: 3,
+        width: "250px",
         color: "yellow",
         "& .MuiOutlinedInput-root": {
           "& fieldset": {

@@ -76,12 +76,12 @@ const CategoryPage = () => {
   return (
     <Box
       sx={{
-         mt: "5rem",
+         mt: "4rem",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        gap: 4,
+        gap: 2,
 
       }}
     >

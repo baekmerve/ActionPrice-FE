@@ -1,19 +1,5 @@
 /* eslint-disable no-unused-vars */
 
-import cherry from "./images/cherry.webp";
-import cTomato from "./images/cTomato.webp";
-import garlic from "./images/garlic.webp";
-
-import avocado from "./images/avocado.webp";
-import pepper from "./images/pepper.webp";
-import pineapple from "./images/pineapple.webp";
-import lemon from "./images/lemon.webp";
-import w1 from "./images/w1.webp";
-import test1 from "./images/test1.jpg";
-import test2 from "./images/test2.jpg";
-import test3 from "./images/test3.jpg";
-import w2 from "./images/w2.webp";
-
 import mixedFruit from "./images/mixedFruit.webp";
 import mixedVeggie from "./images/mixedVeggie.webp";
 import crop from "./images/crop.webp";
@@ -22,20 +8,10 @@ import mushroom from "./images/mushroom.webp";
 import meat from "./images/meat.webp";
 
 import logo from "./images/logo.png";
-import textLogo2 from "./images/textLogo2.png";
+import textLogo from "./images/textLogo.webp";
 
-export { logo, textLogo2, w1, w2, test1, test2, test3 };
+export { logo, textLogo,};
 
-export const slideImageList = [
-  { name: "avocado", image: avocado },
-  { name: "cTomato", image: cTomato },
-  { name: "garlic", image: garlic },
-  { name: "cherry", image: cherry },
-  { name: "lemon", image: lemon },
-
-  { name: "pepper", image: pepper },
-  { name: "pineapple", image: pineapple },
-];
 
 export const largeCategoryList = [
   { id: 1, name: "채소류", image: mixedVeggie },
@@ -62,8 +38,6 @@ export const colors = {
   disable: "#d3d3d3",
   border: "#0c1e2a",
   link: "#8C6A4A",
-  // backgroundColor: "#f8f3e8",
-  // backgroundColor: "#F0F5F4",
   tableHead: "#a45f53",
   brown: "#7b482d",
   footerText: "#a45f53",
